@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { getproducts } from '../services/api'
+import ProductCard from '../components/ProductCard';
 const Home = () => {
-  
+  const [products,setProducts] = useState([]); 
   const fetchproducts=async()=>{ 
     const res=await getproducts(`product`); 
-    console.log(res,"this is the response , suck my dick you baby.")
+     setProducts(res?.data?.products)
 
     //ctrl+f garesi tyo work find garxa and we can replace their occurences
   }
-
 
   useEffect(() => {
    fetchproducts();
@@ -16,10 +16,11 @@ const Home = () => {
   
   return (
     <>
-    <div className='h-screen bg-[#f4adad]'>
-    <div> this is Home</div>
+    <div className='flex justify-around bg-[#f2f2f2]'>
+    <div className=' grid grid-cols-5'>{products.map((item)=>(<ProductCard key={item.id} data={item}/>))} </div>
     </div>
     </>
+        
   )
 }
 
