@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 
 
 const Navbar = () => {
-  const cartCount = useSelector(state => state.cart.items.length)
+  const cartCount = useSelector(state => state.cart.items.reduce((total, item) => total + item.quantity, 0))
   return (
     <nav className='bg-[#e7d5a7]  text-[#434242] flex justify-evenly items-center h-14 font-semibold text-xl'>
         <Link to="/"  className='hover:text-pink-500'>Home</Link>

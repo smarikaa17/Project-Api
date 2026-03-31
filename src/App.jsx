@@ -1,14 +1,21 @@
-import './App.css'
+import Home from './pages/Home'
+import Cart from './pages/Cart'
+import ProductDetails from './pages/ProductDetails'
+import Navbar from './components/Navbar'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 function App() {
   
-
   return (
-    <>
-      <h1 className="text-3xl font-bold underline text-red-500 font">
-      Hello world!
-    </h1>
-    </>
+    <BrowserRouter>
+     <Navbar/>
+     <Routes>
+      <Route path='/' element={<Home/>}/>
+      <Route path='/cart' element={<Cart/>}/>
+      <Route path='/products/:id' element={<ProductDetails/>}/>
+     </Routes>
+
+    </BrowserRouter>
   )
 }
 
