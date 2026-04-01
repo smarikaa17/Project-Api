@@ -2,16 +2,29 @@ import { useDispatch, useSelector } from "react-redux";
 import { decreaseQty, increaseQty, removeFromCart } from "../store/cartSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { Player } from "@lottiefiles/react-lottie-player";
+import animationData from '../assets/emptycart.json'
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const dispatch = useDispatch();
   const cartItem = useSelector((state) => state.cart.items);
+  const navigate= useNavigate();
 
   return (
     
-    <div className="bg-[#f2f2f2] flex flex-wrap justify-center h-full gap-2 py-2">
+    <div className="bg-[#f2f2f2] flex flex-wrap justify-center gap-2 py-2">
       {cartItem.length === 0 ? (
-        <p>Cart is Empty</p>
+        <div className="h-screen">
+        <div className="flex flex-col justify-center items-center gap-2 ">
+          <Player 
+           src={animationData} loop={true} autoplay className='w-60 '
+           />
+        <p className="text-lg">Your Cart is Empty</p>
+        <p className="text-base">Looks like you haven't added anything yet.</p>
+        <button onClick={()=>{navigate('/')}} className="border-2 rounded-lg px-2 py-1 border-yellow-600  text-sm font-semibold hover:text-pink-500">Start shopping!</button>
+        </div>
+        </div>
       ) : (
      
         cartItem.map((item)=> (
