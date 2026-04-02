@@ -13,12 +13,12 @@ const Cart = () => {
 
   return (
     
-    <div className="bg-[#f2f2f2] flex flex-wrap justify-center gap-2 py-2">
+    <div className="bg-[#f2f2f2] flex flex-col min-h-screen items-center gap-2 py-2">
       {cartItem.length === 0 ? (
         <div className="h-screen">
         <div className="flex flex-col justify-center items-center gap-2 ">
           <Player 
-           src={animationData} loop={true} autoplay className='w-60 '
+           src={animationData} loop={true} autoplay className='w-56 '
            />
         <p className="text-lg">Your Cart is Empty</p>
         <p className="text-base">Looks like you haven't added anything yet.</p>
