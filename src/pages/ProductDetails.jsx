@@ -109,7 +109,7 @@ const ProductDetails = () => {
           <button onClick={(e)=>{
             e.stopPropagation()
             dispatch(addToCart(product))
-          }} className="mt-2 w-full hover:text-pink-500 border-2 border-yellow-600 text-[#433b32] font-bold py-3 rounded-2xl text-sm uppercase">
+          }} className="mt-2 w-full hover:text-pink-500 border-2 border-yellow-600 active:bg-pink-300 active:text-white text-[#433b32] font-bold py-3 rounded-2xl text-sm uppercase">
             Add to Cart
           </button>
         </div>
