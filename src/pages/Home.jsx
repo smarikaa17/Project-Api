@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import { getproducts } from '../services/api'
 import ProductCard from '../components/ProductCard';
+import { useDispatch, useSelector } from 'react-redux';
+import { setProductsList } from '../store/ProductsSlice';
 
 const Home = () => {
-  const [products,setProducts] = useState([]); 
+  const productsList=useSelector((store)=>store?.product?.productList);
+  const FilteredproductsList=useSelector((store)=>store?.product?.filteredProductsList);
+  console.log("this is ",productsList)
+  const dispatch=useDispatch();
   const fetchproducts=async()=>{ 
     const res=await getproducts(`product`); 
-     setProducts(res?.data?.products)
+     dispatch(setProductsList(res?.data?.products));
      setLoading(false)
     //ctrl+f garesi tyo work find garxa and we can replace their occurences
   }
     const [loading, setLoading] = useState(true)
-
 
   useEffect(() => {
    fetchproducts();
@@ -27,8 +31,18 @@ const Home = () => {
     ) :(
     <>
     <div className='flex justify-around bg-[#f2f2f2]'>
-    <div className=' grid grid-cols-5'>{products.map((item)=>(<ProductCard key={item.id} data={item}/>))} </div>
-    </div>
+    <div className="grid grid-cols-5">
+  {
+    FilteredproductsList.length !== 0
+      ? FilteredproductsList.map((item) => (
+          <ProductCard key={item.id} data={item} />
+        ))
+      : productsList.map((item) => (
+          <ProductCard key={item.id} data={item} />
+        ))
+  }
+</div>
+</div>
     </>
   )
 }
